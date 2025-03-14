@@ -6,7 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Inertia\Inertia;
-use Inertia\Response;
+use App\DTOs\PostDTO;
 
 class PostController extends Controller
 {
@@ -33,11 +33,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        
+        $postDTO = PostDTO::fromRequest($request);
         Post::create([
-            'title' => $request->title,
-            'content' => $request->content
+            'title' => $postDTO->title,
+            'content' => $postDTO->content
         ]);
+        // Post::create([
+        //     'title' => $request->title,
+        //     'content' => $request->content
+        // ]);
         return to_route('posts.index')->with('success', 'your message,here');
     }
 
@@ -62,7 +66,12 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $postDTO = PostDTO::fromRequest($request);
+        $post->update([
+            'title' => $postDTO->title,
+            'content' => $postDTO->content,
+        ]);
+        //$post->update($request->validated());
         return to_route('posts.index');
     }
 
