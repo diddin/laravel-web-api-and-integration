@@ -34,5 +34,15 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'customer_api' => [
+        'base_url' => env('CUSTOMER_API_BASE_URL'),
+        'api_key' => env('CUSTOMER_API_KEY'),
+        'token' => env('CUSTOMER_API_TOKEN'),
+    ],
+    'service_customer_api' => [
+        'base_url' => env('CUSTOMER_API_BASE_URL', 'https://api.serviceone.com'),
+        'api_key' => env('CUSTOMER_API_KEY'),
+        'bearer_token' => env('CUSTOMER_API_TOKEN'),
+    ],
 
 ];

@@ -21,6 +21,17 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+
+            'stripe/*',
+    
+            'http://127.0.0.1:8001/customersapi/',
+            'http://127.0.0.1:8001/customers/',
+    
+            'http://example.com/foo/*',
+    
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
