@@ -39,10 +39,6 @@ class PostController extends Controller
             'title' => $postDTO->title,
             'content' => $postDTO->content
         ]);
-        // Post::create([
-        //     'title' => $request->title,
-        //     'content' => $request->content
-        // ]);
         return to_route('posts.index')->with('success', 'your message,here');
     }
 
@@ -72,7 +68,6 @@ class PostController extends Controller
             'title' => $postDTO->title,
             'content' => $postDTO->content,
         ]);
-        //$post->update($request->validated());
         return to_route('posts.index');
     }
 
