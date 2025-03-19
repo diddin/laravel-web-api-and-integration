@@ -10,6 +10,7 @@ use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
@@ -26,7 +27,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
             'stripe/*',
     
-            'http://127.0.0.1:8001/customersapi/',
             'http://127.0.0.1:8001/customers/',
     
             'http://example.com/foo/*',

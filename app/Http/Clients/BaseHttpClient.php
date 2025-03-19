@@ -3,7 +3,7 @@
 namespace App\Http\Clients;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\JsonResponse;
@@ -58,7 +58,6 @@ class BaseHttpClient
     protected function sendRequest(string $method, string $endpoint, array $params = [])
     {
         try {
-            //return $this->client->$method($endpoint, $params);
             return Http::withHeaders($this->headers)
             ->baseUrl($this->baseUri)
             ->$method($endpoint, $params);
@@ -83,10 +82,7 @@ class BaseHttpClient
      */
     private function handleException(string $message, int $statusCode = 500) : JsonResponse
     {
-        // Optionally, you can log the exception details for further analysis
-        // Log::error($message);
-
-        //return response()->json();
+        Log::error($message);
 
         return response()->json([
             'error' => true,

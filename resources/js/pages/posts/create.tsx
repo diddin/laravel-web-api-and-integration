@@ -1,4 +1,3 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -16,11 +15,16 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+interface PostForm {
+    title: string;
+    content: string;
+}
+
 export default function PostCreate() {
 
-    const {data, setData, errors, post} = useForm({
-        'title' : "",
-        'content' : ""
+    const { data, setData, errors, post } = useForm<Required<PostForm>>({
+        title : "",
+        content : ""
     });
 
     const submit: FormEventHandler = (e) => {

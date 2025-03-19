@@ -18,14 +18,15 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Muhammad Khusnudin Wahyu Pamungkas',
             'email' => 'diddin.wipe@gmail.com',
-            'password' => 'Purworejo'
+            'password' => 'Surabaya'
         ]);
 
         $this->call([
             PostSeeder::class
         ]);
+
         $this->call([
-            ArticleSeeder::class
+            CustomerSeeder::class
         ]);
     }
 }

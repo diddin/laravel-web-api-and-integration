@@ -1,1 +1,11 @@
+composer run dev
+
 php artisan migrate:fresh --seed
+
+
+route api
+/api/v1/customers               - Provide Api data customers from internal system
+/api/v1/customers/{slug}
+
+route api from external api
+/customers/                     - Provide Api data customers from external system integrated

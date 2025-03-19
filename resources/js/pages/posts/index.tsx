@@ -1,5 +1,5 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Head, Link, usePage, useForm } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -9,17 +9,27 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type Post = {
-    'id' : any,
-    'title': string,
-    'content' : string
+interface PostForm {
+    title: string;
+    content: string;
+}
+
+interface Post {
+    id: number;
+    title: string;
+    content: string;
+}
+
+interface PostPageProps extends SharedData {
+    posts: Post[];
 }
 
 export default function Posts() {
-    const { posts: posts } = usePage().props as unknown as { posts: Post[] };
+
+    const page = usePage<PostPageProps>();
+    const posts = page.props.posts as Post[];
     
-    const { delete: destroy} = useForm();
-    //const destroyPost: FormEventHandler = (e: any, id: number): void => {
+    const { delete: destroy } = useForm<Required<PostForm>>();
     const destroyPost = (e: any, id: number): void => {
         e.preventDefault();
         if(confirm("Are you sure want to remove this post")) {

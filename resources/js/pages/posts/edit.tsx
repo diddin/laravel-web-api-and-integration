@@ -1,6 +1,5 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import { Input } from '@/components/ui/input';
@@ -16,20 +15,29 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-// Define the Post interface
+interface PostForm {
+    title: string;
+    content: string;
+}
+
 interface Post {
     id: number;
     title: string;
     content: string;
 }
 
+interface PostPageProps extends SharedData {
+    post: Post;
+}
+
 export default function PostEdit() {
 
-    const { post: post } = usePage().props as unknown as { post: Post }
+    const page = usePage<PostPageProps>();
+    const post = page.props.post as Post;
 
-    const {data, setData, errors, put} = useForm({
-        'title' : post.title || "",
-        'content' : post.content || ""
+    const { data, setData, errors, put } = useForm<Required<PostForm>>({
+        title : post.title,
+        content : post.content
     });
 
     const submit: FormEventHandler = (e) => {

@@ -18,16 +18,6 @@ const mainNavItems: NavItem[] = [
         href: '/posts',
         icon: FileIcon,
     },
-    {
-        title: 'Articles',
-        href: '/articles',
-        icon: FileIcon,
-    },
-    {
-        title: 'Customers',
-        href: '/customers',
-        icon: FileIcon,
-    },
 ];
 
 const footerNavItems: NavItem[] = [
